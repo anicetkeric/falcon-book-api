@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongodata:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongoexample
+      MONGO_INITDB_DATABASE: falconapidb
+      
+volumes:
+  mongodata:

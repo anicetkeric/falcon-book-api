@@ -1,0 +1,183 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Book Falcon api.",
+    "version": "1.0.0",
+    "title": "Api Documentation",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "anicetkeric@outlook.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  }, 
+  "host": "http://127.0.0.1:8000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "book",
+      "description": "Everything about your Book"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/book": {
+      "post": {
+        "tags": [
+          "book"
+        ],
+        "summary": "Add a new book",
+        "description": "",
+        "operationId": "addBook",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Book object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "book"
+        ],
+        "summary": "Update an existing book",
+        "description": "",
+        "operationId": "updateBook",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "book object that needs to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+     "/book/{bookId}": {
+      "get": {
+        "tags": [
+          "book"
+        ],
+        "summary": "get book by id",
+        "description": "",
+        "operationId": "getById",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+       {
+		"name": "bookId",
+		"in": "path",
+		"description": "ID of Book to return",
+		"required": true,
+		"type": "string"
+		}
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Book": {
+      "type": "object",
+      "required": [
+        "title",
+        "author"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "doggie"
+        },
+        "price": {
+          "type": "int64",
+          "example": "0"
+        },
+        "description": {
+          "type": "string",
+          "example": "description"
+        },
+        "author": {
+          "type": "string",
+          "example": "John Doe"
+        }
+      },
+      "xml": {
+        "name": "Book"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
