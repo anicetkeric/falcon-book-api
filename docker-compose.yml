@@ -11,6 +11,16 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: mongoexample
       MONGO_INITDB_DATABASE: falconapidb
-      
+  
+  book-api:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/usr/api
+      - ./logs/:/usr/api/logs
+     
 volumes:
   mongodata:
