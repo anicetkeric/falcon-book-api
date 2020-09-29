@@ -21,6 +21,8 @@ services:
     volumes:
       - ./:/usr/api
       - ./logs/:/usr/api/logs
+    links:
+     - mongo      
      
 volumes:
   mongodata:

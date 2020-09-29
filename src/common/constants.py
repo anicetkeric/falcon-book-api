@@ -7,7 +7,7 @@ FAVICON_URL = 'https://falconframework.org/favicon-32x32.png'
 # datasource constant
 MONGO = {
     'DATABASE': 'falconapidb',
-    'HOST': 'localhost',
+    'HOST': 'mongo',
     'PORT': 27017,
     'USERNAME': 'root',
     'PASSWORD': 'mongoexample'

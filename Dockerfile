@@ -2,7 +2,7 @@ FROM pypy:3-6
 RUN mkdir -p /usr/api/logs
 WORKDIR /usr/api
 RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
-RUN apt-get update && apt-get install -y supervisor
+RUN apt-get update && apt-get --allow-unauthenticated install -y supervisor
 RUN mkdir -p /var/log/supervisor
 COPY ./deployment/gunicorn.conf /etc/supervisor/conf.d/supervisord.conf
 COPY . /usr/api
