@@ -1,16 +1,17 @@
-import falcon
 import pathlib
+
+import falcon
+import mongoengine as mongo
 from falcon_swagger_ui import register_swaggerui_app
 
 import src.common.constants as constants
 from src.common.cors import Cors
-from src.common.json_translator import JSONTranslator
-from src.common.require_json import RequireJSON
-import mongoengine as mongo
 from src.common.handlers import ExceptionHandler as handler
-
+from src.common.require_json import RequireJSON
 from src.resource.book_resource import BookResource
 
+# automatically creates a connection to the Mongodb database with the credentials supplied. This connection will be
+# used throughout the application.
 mongo.connect(
     constants.MONGO['DATABASE'],
     host=constants.MONGO['HOST'],
@@ -21,8 +22,10 @@ mongo.connect(
 
 STATIC_PATH = pathlib.Path(__file__).parent / 'static'
 
+# create your WSGI application and alias it as app.
 app = falcon.API(middleware=[Cors(), RequireJSON()])
 
+# route the HTTP path and method to the respective methods of the resource.
 book = BookResource()
 app.add_route('/api/book/', book)
 app.add_route('/api/book/{book_id}', book, suffix="id")
