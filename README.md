@@ -57,7 +57,7 @@ Swagger page: ip:3000/swagger
 
 [Original Version](https://dzone.com/articles/python-falcon-microservice-with-mongodb-and-docker)
 
-[Improved version](#)
+[Improved version](https://boottechnologies-ci.medium.com/python-falcon-microservice-with-mongodb-and-docker-dzone-485188ec4fa1)
 
 ## Authors
 
